@@ -1,17 +1,21 @@
 package main
 
-func grayCode(n int) []int {
-	result := make([]int, 1<<uint(n))
-	for i := 1; i < len(result); i++ {
-		result[i] = i ^ (i >> 1)
+func sumOfDistancesInTree(n int, edges [][]int) []int {
+	// Type of this challenge is Depth First Search
+	graph := make([][]int, n)
+
+	// Make the graph to represent the tree.
+	for _, e := range edges {
+		u, v := e[0], e[1]
+		graph[u] = append(graph[u], v)
+		graph[v] = append(graph[v], u)
 	}
-	return result
+
+	res := make([]int, n)
+
+	return res
 }
 
 func main() {
-	grayCode(0)
-	grayCode(1)
-	grayCode(2)
-	grayCode(3)
-	grayCode(16)
+	sumOfDistancesInTree(6, [][]int{{0, 1}, {0, 2}, {2, 3}, {2, 4}, {2, 5}})
 }
